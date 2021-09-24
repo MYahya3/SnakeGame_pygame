@@ -9,7 +9,7 @@ pygame.init()
 # Colors scheme
 white = (255, 255, 255)
 black = (0, 0, 0)
-Green = (55, 98, 87)
+Green = (55, 98, 88)
 # Define Default Font to Use
 font_style = pygame.font.SysFont(None, size=(50))
 
