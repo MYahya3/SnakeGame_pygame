@@ -60,13 +60,14 @@ def snake(block, snake_body):
 
 # Define a loop (Running of game till end of it, with controllers to move snake and boundary conditions)
 def gameloop():
+
     # Snake Position on Window Screen
     snake_pos = [window_x / 2, window_y / 2]
 
     # food position on Window Screen
     food = [random.randrange(0, (window_x // 10)) * 10,
             random.randrange(0, (window_y // 10)) * 10]
-    # Set initial direction (when game start snake move towards Left) and conditions
+    # Set initial direction (when game start snake move towards Left)
     direction = 'LEFT'
     change_to = direction
     # Create list to define process when snake eat food and it's length increases
