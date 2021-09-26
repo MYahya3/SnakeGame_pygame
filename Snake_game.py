@@ -143,7 +143,7 @@ def gameloop():
         # If Snake bite it's own body game over
         for x in snake_body[:-1]:
             if x == snake_head:
-                game_over = True
+                game_close = True
 
         # Define message (when game will over and set condition to either play again or Quit)
         while game_over == True:
