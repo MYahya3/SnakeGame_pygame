@@ -12,7 +12,7 @@ import pygame
 from pygame.locals import *
 import random
 
-# Initialize pygame
+# Initialize pygame modules(Like pygame.draw etc)
 pygame.init()
 
 # Window axis
@@ -35,7 +35,7 @@ blue = (66, 90, 245)
 game_window = pygame.display.set_mode(size=(window_x, window_y))
 game_title = pygame.display.set_caption("Snake Game")
 
-# Fps Controller
+# Fps Controller (To make sure our progam run at max FPS)
 fps = pygame.time.Clock()
 
 
@@ -163,7 +163,7 @@ def gameloop():
                         gameloop()
         # Refresh game screen
         pygame.display.update()
-        # Cam use to define fps as or can say speed of snake
+        # Make sure the game runs at the same speed or can say speed of snake
         fps.tick(snake_speed)
     # Keep Window open until desired time
     pygame.quit()
