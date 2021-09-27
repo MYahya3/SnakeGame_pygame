@@ -21,7 +21,7 @@ window_y = 560
 
 # Set size of block (default size of food and snake rectangle) and snake speed
 block = 10
-snake_speed = 15
+snake_speed = 10
 
 # Colors Scheme
 white = (255, 255, 255)
@@ -33,6 +33,7 @@ blue = (66, 90, 245)
 
 # Initialize Window display mode and title
 game_window = pygame.display.set_mode(size=(window_x, window_y))
+game_window.fill(orange)
 game_title = pygame.display.set_caption("Snake Game")
 
 # Fps Controller (To make sure our progam run at max FPS)
@@ -63,7 +64,6 @@ def gameloop():
 
     # Snake Position on Window Screen
     snake_pos = [window_x / 2, window_y / 2]
-
     # food position on Window Screen
     food = [random.randrange(0, (window_x // 10)) * 10,
             random.randrange(0, (window_y // 10)) * 10]
@@ -74,7 +74,7 @@ def gameloop():
     snake_body = []
     # Initial length of snake
     length_of_snake = 1
-    # Main Logic
+                                         ## Main Logic##
     game_close = False
     game_over = False
     # Set controllers to move snake
@@ -115,11 +115,12 @@ def gameloop():
             snake_pos[0] -= 10
         if direction == 'RIGHT':
             snake_pos[0] += 10
-        #
+
         game_window.fill(orange)
         # Create Food
         pygame.draw.rect(game_window, white, [food[0], food[1], block, block])
 
+                                                ## Create Snake Body##
         snake_head = []
         snake_head.append(snake_pos[0])
         snake_head.append(snake_pos[1])
@@ -131,12 +132,12 @@ def gameloop():
         # Create Snake
         snake(block, snake_body)
         Score(length_of_snake - 1)  # Count Scores
-
+                                            ## Snake Length Growing Mechanism ##
         if snake_pos[0] == food[0] and snake_pos[1] == food[1]:
             food = [random.randrange(0, (window_x // 10)) * 10, random.randrange(0, (window_y // 10)) * 10]
             length_of_snake += 1
 
-        # Boundary Condition (if snake touch any of boundary, game over)
+                        # Boundary Condition (if snake touch any of boundary, game over)
         if snake_pos[0] >= window_x or snake_pos[0] < 0 or snake_pos[1] >= window_y or snake_pos[1] < 0:
             game_over = True
 
@@ -148,7 +149,7 @@ def gameloop():
         # Define message (when game will over and set condition to either play again or Quit)
         while game_over == True:
             game_window.fill(orange)
-            message("Game Over Press P-Play Again or Q-Quit", black)
+            message("Game Over Press P (Play Again) or Q (Quit)", black)
             message(f"Total Score: {length_of_snake-1}", red, window_pos=[window_x/2.5, window_y-50])
             Score(length_of_snake - 1)
             pygame.display.update()
@@ -167,7 +168,7 @@ def gameloop():
         fps.tick(snake_speed)
     # Keep Window open until desired time
     pygame.quit()
-    quit()
+    # quit()
 
 
 Game = gameloop()
