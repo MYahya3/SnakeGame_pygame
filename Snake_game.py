@@ -33,22 +33,18 @@ blue = (66, 90, 245)
 
 # Initialize Window display mode and title
 game_window = pygame.display.set_mode(size=(window_x, window_y))
-game_window.fill(orange)
 game_title = pygame.display.set_caption("Snake Game")
 
 # Fps Controller (To make sure our progam run at max FPS)
 fps = pygame.time.Clock()
-
-
 # Create a function to print message .
 def message(msg, color, window_pos=None):
     my_font = pygame.font.SysFont("high tower", 30)
     mesg = my_font.render(msg, True, color)
     game_window.blit(mesg, window_pos)
 
-
 # Function to display score
-def score(score, position=(0, 0)):
+def Score(score, position=(0, 0)):
     score_font = pygame.font.SysFont("times new roman", 20)
     value = score_font.render("Score: " + str(score), True, blue)
     game_window.blit(value, position)  # Draw score surface on Window Surface
@@ -63,7 +59,7 @@ def snake(block, snake_body):
 def gameloop():
 
     # Snake Position on Window Screen
-    snake_pos = [window_x / 2, window_y / 2]
+    snake_pos = [window_x/2, window_y/2]
     # food position on Window Screen
     food = [random.randrange(0, (window_x // 10)) * 10,
             random.randrange(0, (window_y // 10)) * 10]
@@ -74,7 +70,7 @@ def gameloop():
     snake_body = []
     # Initial length of snake
     length_of_snake = 1
-                                         ## Main Logic##
+                                         ## Main Logic ##
     game_close = False
     game_over = False
     # Set controllers to move snake
@@ -115,7 +111,7 @@ def gameloop():
             snake_pos[0] -= 10
         if direction == 'RIGHT':
             snake_pos[0] += 10
-
+        # Fill window with default color when snake moves to next position
         game_window.fill(orange)
         # Create Food
         pygame.draw.rect(game_window, white, [food[0], food[1], block, block])
@@ -132,6 +128,7 @@ def gameloop():
         # Create Snake
         snake(block, snake_body)
         Score(length_of_snake - 1)  # Count Scores
+
                                             ## Snake Length Growing Mechanism ##
         if snake_pos[0] == food[0] and snake_pos[1] == food[1]:
             food = [random.randrange(0, (window_x // 10)) * 10, random.randrange(0, (window_y // 10)) * 10]
@@ -151,7 +148,6 @@ def gameloop():
             game_window.fill(orange)
             message("Game Over Press P (Play Again) or Q (Quit)", black, [window_x / 4, window_y / 2])
             message(f"Total Score: {length_of_snake-1}", red, window_pos=[window_x/2.5, window_y-50])
-            score(length_of_snake - 1)
             pygame.display.update()
 
             # Set keys to Play Again or QUit when game over
