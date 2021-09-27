@@ -41,14 +41,14 @@ fps = pygame.time.Clock()
 
 
 # Create a function to print message .
-def message(msg, color, window_pos=[window_x / 4, window_y / 2]):
+def message(msg, color, window_pos=None):
     my_font = pygame.font.SysFont("high tower", 30)
     mesg = my_font.render(msg, True, color)
     game_window.blit(mesg, window_pos)
 
 
 # Function to display score
-def Score(score, position=(0, 0)):
+def score(score, position=(0, 0)):
     score_font = pygame.font.SysFont("times new roman", 20)
     value = score_font.render("Score: " + str(score), True, blue)
     game_window.blit(value, position)  # Draw score surface on Window Surface
@@ -149,9 +149,9 @@ def gameloop():
         # Define message (when game will over and set condition to either play again or Quit)
         while game_over == True:
             game_window.fill(orange)
-            message("Game Over Press P (Play Again) or Q (Quit)", black)
+            message("Game Over Press P (Play Again) or Q (Quit)", black, [window_x / 4, window_y / 2])
             message(f"Total Score: {length_of_snake-1}", red, window_pos=[window_x/2.5, window_y-50])
-            Score(length_of_snake - 1)
+            score(length_of_snake - 1)
             pygame.display.update()
 
             # Set keys to Play Again or QUit when game over
